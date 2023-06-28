@@ -1,0 +1,31 @@
+@import '../../vars';
+.homePage {
+    padding: 50px 0px;
+    h1 {
+        color: $white;
+        text-align: center;
+    }
+    ul {
+        margin: 0 auto;
+        margin-top: 50px;
+        position: relative;
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(400px, 1fr));
+        grid-template-rows: auto;
+        gap: 40px 40px;
+        justify-items: center;
+        li {
+            list-style-type: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .homePage {
+        ul {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

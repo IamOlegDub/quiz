@@ -1,0 +1,14 @@
+@import '../../vars';
+.questionPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .variants {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $variants-gap;
+        max-width: $question-width;
+        margin-top: calc(#{$variants-gap * 2});
+    }
+}

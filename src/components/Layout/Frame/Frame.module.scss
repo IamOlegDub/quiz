@@ -1,0 +1,59 @@
+@import '../../../vars';
+.frame {
+    position: relative;
+    height: 200px;
+    width: $question-width;
+    background: #060c21;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frame.skew::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(315deg, #e91e63, #5d02ff);
+    transform: skew(2deg, 2deg);
+    z-index: -1;
+}
+// .frame.skew.glow:nth-child(n)::before {
+//     background: linear-gradient(315deg, #ff0057, #e64a19);
+// }
+
+// .frame.skew.glow:nth-child(even)::before {
+// }
+
+// .frame.skew.glow:nth-child(2n + 1)::before {
+//     background: linear-gradient(315deg, #e91e63, #5d02ff);
+// }
+
+// .frame.skew.glow:nth-child(4n + 4)::before {
+//     background: linear-gradient(315deg, #ff0000, #ffc107);
+// }
+
+@media only screen and (max-width: 992px) {
+    .frame {
+        width: 450px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .frame {
+        max-width: 350px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .frame {
+        position: relative;
+    }
+
+    .container .frame .content {
+        position: relative;
+        width: 100%;
+    }
+}
