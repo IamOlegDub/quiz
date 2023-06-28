@@ -6,6 +6,12 @@ export const HomePage = ({ onStartQuiz }) => {
     return (
         <div className={styles.homePage}>
             <h1>Choose a quiz category</h1>
+            <button
+                className={styles.luckButton}
+                onClick={() => onStartQuiz('random', 'random')}
+            >
+                Get luck!
+            </button>
             <ul>
                 {categories.map((category) => (
                     <Card

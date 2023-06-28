@@ -1,8 +1,5 @@
 export const categories = [
-    {
-        title: 'General Knowledge',
-        key: 9,
-    },
+    { title: 'General Knowledge', key: 9 },
     { title: 'Books', key: 10 },
     { title: 'Films', key: 11 },
     { title: 'Music', key: 12 },
@@ -18,7 +15,6 @@ export const categories = [
     { title: 'Geography', key: 22 },
     { title: 'History', key: 23 },
     { title: 'Politics', key: 24 },
-    // { title: "Art", key: 25 },
     { title: 'Celebrities', key: 26 },
     { title: 'Animals', key: 27 },
     { title: 'Vehicles', key: 28 },

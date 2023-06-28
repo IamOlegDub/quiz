@@ -1,3 +1,25 @@
 @import '../../vars';
 .finishPage {
+    padding: 50px;
+    color: $white;
+    text-align: center;
+    .result,
+    .total {
+        margin-bottom: 20px;
+    }
+    .total {
+        margin-top: 40px;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    .home {
+        color: $white;
+        width: 150px;
+        text-align: center;
+        margin-top: 60px;
+        div {
+            max-width: 150px;
+            max-height: 40px;
+        }
+    }
 }

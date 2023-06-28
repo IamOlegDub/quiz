@@ -3,7 +3,7 @@
     position: relative;
     height: 200px;
     width: $question-width;
-    background: #060c21;
+    background: $main-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,20 +20,6 @@
     transform: skew(2deg, 2deg);
     z-index: -1;
 }
-// .frame.skew.glow:nth-child(n)::before {
-//     background: linear-gradient(315deg, #ff0057, #e64a19);
-// }
-
-// .frame.skew.glow:nth-child(even)::before {
-// }
-
-// .frame.skew.glow:nth-child(2n + 1)::before {
-//     background: linear-gradient(315deg, #e91e63, #5d02ff);
-// }
-
-// .frame.skew.glow:nth-child(4n + 4)::before {
-//     background: linear-gradient(315deg, #ff0000, #ffc107);
-// }
 
 @media only screen and (max-width: 992px) {
     .frame {

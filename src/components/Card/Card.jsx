@@ -10,7 +10,10 @@ export const Card = ({ category, onStartQuiz }) => {
                 <h3>{category.title}</h3>
                 <p>10 questions about {category.title}</p>
                 {difficulties.map((diff) => (
-                    <button onClick={() => onStartQuiz(diff, category)}>
+                    <button
+                        key={diff}
+                        onClick={() => onStartQuiz(category, diff)}
+                    >
                         {diff}
                     </button>
                 ))}

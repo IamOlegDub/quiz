@@ -1,0 +1,33 @@
+@import '../../vars';
+.errorMessage {
+    padding: 6px 10px;
+    text-align: center;
+    color: $white;
+    background: $main-color;
+    text-transform: capitalize;
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(315deg, #ff0000, #ffc107);
+        animation: gradient 1s ease infinite;
+        background-size: 400% 400%;
+        transform: skew(2deg, 2deg);
+        z-index: -1;
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}

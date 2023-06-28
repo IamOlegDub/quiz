@@ -2,104 +2,100 @@
     "response_code": 0,
     "results": [
         {
+            "category": "Entertainment: Television",
+            "type": "multiple",
+            "difficulty": "easy",
+            "question": "Which character was played by Dustin Diamond in the sitcom &#039;Saved by the Bell&#039;?",
+            "correct_answer": "Screech",
+            "incorrect_answers": ["Zack", "Mr. Belding", "A.C. Slater"]
+        },
+        {
             "category": "History",
             "type": "multiple",
-            "difficulty": "easy",
-            "question": "King Henry VIII was the second monarch of which European royal house?",
-            "correct_answer": "Tudor",
-            "incorrect_answers": ["York", "Stuart", "Lancaster"]
-        },
-        {
-            "category": "Entertainment: Video Games",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "What is the title of song on the main menu in Halo?",
-            "correct_answer": "Halo",
-            "incorrect_answers": ["Opening Suite", "Shadows", "Suite Autumn"]
-        },
-        {
-            "category": "Geography",
-            "type": "multiple",
             "difficulty": "medium",
-            "question": "What tiny principality lies between Spain and France?",
-            "correct_answer": "Andorra",
-            "incorrect_answers": ["Liechtenstein", "Monaco", "San Marino"]
-        },
-        {
-            "category": "Entertainment: Video Games",
-            "type": "multiple",
-            "difficulty": "easy",
-            "question": "In the game Battleblock Theater, what was the name of the voice actor who voiced the narrator?",
-            "correct_answer": "Will Stamper",
-            "incorrect_answers": [
-                "Steve Blum",
-                "Richard Epcar",
-                "Yuri Lowenthal"
-            ]
-        },
-        {
-            "category": "Science & Nature",
-            "type": "multiple",
-            "difficulty": "hard",
-            "question": "Which of the following plastic is commonly used for window frames, gutters and drain pipes?",
-            "correct_answer": "Polyvinylchloride (PVC) ",
-            "incorrect_answers": [
-                "Polyethylene (PE)",
-                "Polypropylene (PP)",
-                "Polystyrene (PS)"
-            ]
+            "question": "Which of these countries was sea charted in 1500 by the Portuguese maritime explorations?",
+            "correct_answer": "Brazil",
+            "incorrect_answers": ["India", "Mozambique", "Madagascar"]
         },
         {
             "category": "Entertainment: Music",
             "type": "multiple",
-            "difficulty": "medium",
-            "question": "Who is the frontman of Muse?",
-            "correct_answer": "Matt Bellamy",
-            "incorrect_answers": [
-                "Dominic Howard",
-                "Thom Yorke",
-                "Jonny Greenwood"
-            ]
-        },
-        {
-            "category": "Geography",
-            "type": "multiple",
             "difficulty": "easy",
-            "question": "Harvard University is located in which city?",
-            "correct_answer": "Cambridge",
-            "incorrect_answers": ["Providence", "New York", "Washington D.C."]
+            "question": "Who wrote the Sinead O`Connor hit &#039;Nothing Compares 2 U&#039;?",
+            "correct_answer": "Prince",
+            "incorrect_answers": ["Michael Jackson", "Cameo", "Rick James"]
         },
         {
             "category": "Entertainment: Video Games",
             "type": "multiple",
             "difficulty": "hard",
-            "question": "What do the video games No Man&rsquo;s Sky and Mighty No. 9 have in common?",
-            "correct_answer": "Both were announced in 2013.",
+            "question": "In the Gamecube Version of &quot;Resident Evil&quot; what text document is open on the monitor of the computer in the Visual Data Room?",
+            "correct_answer": "A GDC Document",
             "incorrect_answers": [
-                "Both were crowdfunded.",
-                "Both were developed by indie studios.",
-                "Both were released for the PlayStation 3."
+                "Text Document on Herbs",
+                "Nothing",
+                "Document on B.O.Ws"
             ]
         },
         {
-            "category": "Entertainment: Music",
+            "category": "Entertainment: Film",
             "type": "multiple",
             "difficulty": "medium",
-            "question": "Which member of the British pop group &quot;The Spice Girls&quot; was known as Ginger Spice?",
-            "correct_answer": "Geri Halliwell",
+            "question": "Which movie of film director Stanley Kubrick is known to be an adaptation of a Stephen King novel?",
+            "correct_answer": "The Shining",
             "incorrect_answers": [
-                "Melanie Brown",
-                "Emma Bunton",
-                "Victoria Beckham"
+                "2001: A Space Odyssey",
+                " Dr. Strangelove ",
+                "Eyes Wide Shut"
             ]
         },
         {
-            "category": "General Knowledge",
+            "category": "Entertainment: Video Games",
+            "type": "multiple",
+            "difficulty": "medium",
+            "question": "Which of these is NOT a game under the Worms series?",
+            "correct_answer": "Major Malfunction",
+            "incorrect_answers": ["Crazy Golf", "Clan Wars", "Ultimate Mayhem"]
+        },
+        {
+            "category": "Entertainment: Japanese Anime & Manga",
             "type": "multiple",
             "difficulty": "easy",
-            "question": "What is the official language of Brazil?",
-            "correct_answer": "Portugese",
-            "incorrect_answers": ["Brazilian", "Spanish", "English"]
+            "question": "On what medium was &quot;Clannad&quot; first created?",
+            "correct_answer": "Visual novel",
+            "incorrect_answers": ["Anime", "Manga", "Light novel"]
+        },
+        {
+            "category": "Geography",
+            "type": "multiple",
+            "difficulty": "hard",
+            "question": "When does Finland celebrate their independence day?",
+            "correct_answer": "December 6th",
+            "incorrect_answers": [
+                "January 2nd",
+                "November 12th",
+                "February 8th"
+            ]
+        },
+        {
+            "category": "Sports",
+            "type": "multiple",
+            "difficulty": "medium",
+            "question": "Which car manufacturer won the 2017 24 Hours of Le Mans?",
+            "correct_answer": "Porsche",
+            "incorrect_answers": ["Toyota", "Audi", "Chevrolet"]
+        },
+        {
+            "category": "Entertainment: Video Games",
+            "type": "multiple",
+            "difficulty": "easy",
+            "question": "In the Assassin&#039;s Creed series,what was the name of Desmond Miles given by Abstergo?",
+            "correct_answer": "Subject 17",
+            "incorrect_answers": [
+                "Subject 16",
+                "Subject 18",
+                "Alta&iuml;r Ibn-La&#039;Ahad"
+            ]
         }
     ]
 }

@@ -1,70 +1,105 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './PlayPage.module.scss';
 import { Frame } from '../../components/Layout/Frame';
 import { useEffect, useState } from 'react';
+import { ErrorMessage } from '../../components/ErrorMessage';
 
-export const PlayPage = ({ quizData }) => {
+export const PlayPage = ({
+    quizData,
+    score,
+    setScore,
+    setCorrect,
+    setTime,
+}) => {
     const [options, setOptions] = useState();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selected, setSelected] = useState();
     const [userError, setUserError] = useState(false);
-    const [score, setScore] = useState(0);
-    const params = useParams();
 
+    const params = useParams();
     const navigate = useNavigate();
 
+    const word = 'ABCD';
+
     const data = quizData.results && quizData.results[currentQuestion];
+    console.log(data);
 
     useEffect(() => {
         setOptions(
             quizData.results &&
-                handleShuffle([...data.incorrect_answers, data.correct_answer])
+                onShuffle([...data.incorrect_answers, data.correct_answer])
         );
     }, [quizData.results, data]);
 
     const onQuit = () => {
         setScore(0);
+        setCorrect(0);
         navigate('/');
     };
 
-    const handleShuffle = (options) => {
+    const onShuffle = (options) => {
         return options.sort(() => Math.random() - 0.5);
     };
-    const word = 'ABCD';
-    console.log(options);
 
     const onNextQuestion = () => {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelected();
+        if (currentQuestion > 8) {
+            navigate('/finish');
+            setTime((prev) => Date.now() - prev);
+        } else if (selected) {
+            setCurrentQuestion(currentQuestion + 1);
+            setSelected();
+        } else setUserError('Please select an option');
     };
 
     const onSelect = (option) => {
         if (selected === option && selected === data.correct_answer)
-            return 'select';
+            return 'selected';
         else if (selected === option && selected !== data.correct_answer)
             return 'wrong';
-        else if (option === data.correct_answer) return 'select';
+        else if (option === data.correct_answer) return 'selected';
     };
 
     const onCheck = (option) => {
         setSelected(option);
-        if (option === data.correct_answer) setScore(score + 1);
+        if (option === data.correct_answer) {
+            setScore(() => {
+                if (data.difficulty === 'easy') return score + 1;
+                if (data.difficulty === 'medium') return score + 2;
+                if (data.difficulty === 'hard') return score + 3;
+            });
+            setCorrect((prev) => prev + 1);
+        }
         setUserError(false);
     };
 
+    const diffRate =
+        data.difficulty === 'easy'
+            ? 'Q'
+            : data.difficulty === 'medium'
+            ? 'QQ'
+            : 'QQQ';
+
     return (
         <div className={styles.playPage}>
-            <h2>{params.id}</h2>
-            <h5>Question {currentQuestion + 1}:</h5>
-            <div>{score}</div>
+            <h2>{data.category}</h2>
+            <div className={styles.info}>
+                <h5>Question {currentQuestion + 1}:</h5>
+                {userError && <ErrorMessage>{userError}</ErrorMessage>}
+                <div className={styles.score}>Score: {score}</div>
+            </div>
             <Frame stylesQuestion={styles.question}>
+                <div className={styles.diffRate}>{diffRate}</div>
                 {data.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}
             </Frame>
             <div className={styles.options}>
                 {options &&
                     options.map((option, i) => (
-                        <div onClick={() => onCheck(option)}>
+                        <button
+                            key={option}
+                            onClick={() => onCheck(option)}
+                            disabled={selected}
+                        >
                             <Frame
                                 key={option}
                                 stylesOption={cn(
@@ -73,9 +108,13 @@ export const PlayPage = ({ quizData }) => {
                                 )}
                             >
                                 <div>{word[i]}:</div>
-                                <div>{option}</div>
+                                <div>
+                                    {option
+                                        .replace(/&quot;/g, '"')
+                                        .replace(/&#039;/g, "'")}
+                                </div>
                             </Frame>
-                        </div>
+                        </button>
                     ))}
             </div>
             <div className={styles.buttons}>
@@ -84,7 +123,7 @@ export const PlayPage = ({ quizData }) => {
                 </div>
                 <div onClick={onNextQuestion}>
                     <Frame stylesNextButton={styles.nextButton}>
-                        Next question
+                        {currentQuestion > 8 ? 'Finish' : 'Next question'}
                     </Frame>
                 </div>
             </div>
