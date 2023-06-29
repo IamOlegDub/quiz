@@ -1,0 +1,29 @@
+@import '../../vars';
+.luckButton {
+    position: relative;
+    margin-top: 20px;
+    color: $white;
+    padding: 15px 50px;
+    background: linear-gradient(
+        315deg,
+        #89ff00,
+        #ff0057,
+        #5d02ff,
+        #00bcd4,
+        #e64a19
+    );
+    animation: gradient 4s ease-in-out infinite;
+    background-size: 400% 400%;
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}

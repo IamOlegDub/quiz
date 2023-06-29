@@ -15,13 +15,8 @@ body {
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    // background: $body-gradient;
     background: $main-color;
 }
-
-// body[data-theme  ="dark"] {
-//     background-color: var(--gray-500);
-// }
 
 a,
 input,
@@ -31,7 +26,9 @@ textarea {
 ul {
     padding: 0;
 }
-
+button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 ::-webkit-scrollbar {
     background-color: transparent;
     width: 4px;

@@ -14,19 +14,21 @@ function App() {
     const [correct, setCorrect] = useState(0);
     const [time, setTime] = useState();
     const [infoData, setInfoData] = useState({});
-
     const [error, setError] = useState('');
+
     const navigate = useNavigate();
+
     const loadData = () => {
         const loadedData = JSON.parse(localStorage.getItem('newData'));
         if (loadedData) {
-            console.log('data is loaded');
             setInfoData(loadedData);
         }
     };
+
     useEffect(() => {
         loadData();
     }, []);
+
     const onStartQuiz = async (category, diff) => {
         setIsLoading(true);
         navigate(
@@ -67,7 +69,14 @@ function App() {
         }
         setTime(Date.now());
     };
+
+    // useEffect(() => {
+    //     localStorage.setItem('currentQuizData', JSON.stringify(quizData));
+    //     console.log('data saved');
+    // }, [quizData]);
+
     if (isLoading) return <Spinner />;
+
     return (
         <div className='App'>
             <Routes>

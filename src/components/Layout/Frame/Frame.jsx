@@ -1,5 +1,5 @@
-import styles from './Frame.module.scss';
 import cn from 'classnames';
+import styles from './Frame.module.scss';
 
 export const Frame = ({
     children,
@@ -7,6 +7,7 @@ export const Frame = ({
     stylesOption,
     stylesNextButton,
     stylesQuitButton,
+    stylesModal,
 }) => {
     return (
         <div
@@ -17,7 +18,8 @@ export const Frame = ({
                 stylesQuestion,
                 stylesOption,
                 stylesNextButton,
-                stylesQuitButton
+                stylesQuitButton,
+                stylesModal
             )}
         >
             <div className={styles.text} type='text'>

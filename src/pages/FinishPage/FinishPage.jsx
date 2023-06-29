@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { Frame } from '../../components/Layout/Frame';
 import styles from './FinishPage.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { InfoModal } from '../../components/InfoModal';
 
 export const FinishPage = ({
     score,
@@ -12,6 +13,7 @@ export const FinishPage = ({
     infoData,
     loadData,
 }) => {
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const newData = {
@@ -20,9 +22,8 @@ export const FinishPage = ({
             time: infoData.time ? time + infoData.time : time,
             games: infoData.games ? 1 + infoData.games : 1,
         };
-        console.log('dataSaved');
         localStorage.setItem('newData', JSON.stringify(newData));
-    });
+    }, []);
 
     const onBackHome = () => {
         setScore(0);
@@ -48,13 +49,26 @@ export const FinishPage = ({
 
     return (
         <div className={styles.finishPage}>
-            {/* <Frame> */}
+            <InfoModal
+                onClose={() => setShowModal(false)}
+                showModal={showModal}
+            />
             <div className={styles.total}>Result:</div>
 
             <div className={styles.result}>Score: {score}</div>
             <div className={styles.result}>Time: {answeringTime}</div>
             <div className={styles.result}>Correct answers: {correct}</div>
-            <div className={styles.result}>Difficulty score: {diffScore}</div>
+            <div className={styles.result}>
+                <div className={styles.diffScore}>
+                    Difficulty score: {diffScore}
+                    <span
+                        onClick={() => setShowModal(!showModal)}
+                        className={styles.i}
+                    >
+                        i
+                    </span>
+                </div>
+            </div>
 
             <div className={styles.total}>Total results:</div>
 
@@ -69,7 +83,6 @@ export const FinishPage = ({
                 Total difficulty score: {totalDiffScore}
             </div>
             <div className={styles.result}>Total games: {totalGames}</div>
-            {/* </Frame> */}
             <button className={styles.home} onClick={onBackHome}>
                 <Frame>Back to Home</Frame>
             </button>

@@ -12,23 +12,53 @@ export const PlayPage = ({
     setCorrect,
     setTime,
 }) => {
+    // const [quizData, setQuizData] = useState();
     const [options, setOptions] = useState();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selected, setSelected] = useState();
     const [userError, setUserError] = useState(false);
+    const [ansCategories, setAnsCategories] = useState([]);
 
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     const data = JSON.parse(localStorage.getItem('currentQuizData'));
+    //     console.log('data loaded');
+    //     console.log(data);
+    // }, []);
+
     const word = 'ABCD';
 
-    const data = quizData.results && quizData.results[currentQuestion];
+    const data = quizData && quizData.results[currentQuestion];
 
+    const writeCategories = () => {
+        const newObj = {
+            category: data.category,
+            value: 1,
+        };
+        if (ansCategories.length > 0) {
+            console.log('обєкт існує уже');
+            ansCategories.forEach((ansCat) => {
+                if (ansCat.category === data.category) {
+                    ansCat.value = ansCat.value + 1;
+                    console.log('модифікація створилася');
+                    setAnsCategories((prev) => {
+                        return [...prev, ansCat];
+                    });
+                } else {
+                    setAnsCategories((prev) => [...prev, newObj]);
+                }
+            });
+        } else {
+            setAnsCategories([newObj]);
+        }
+    };
     useEffect(() => {
         setOptions(
-            quizData.results &&
+            quizData &&
                 onShuffle([...data.incorrect_answers, data.correct_answer])
         );
-    }, [quizData.results, data]);
+    }, [quizData, data]);
 
     const onQuit = () => {
         setScore(0);
@@ -41,6 +71,7 @@ export const PlayPage = ({
     };
 
     const onNextQuestion = () => {
+        // writeCategories();
         if (currentQuestion > 8) {
             navigate('/finish');
             setTime((prev) => Date.now() - prev);
@@ -72,17 +103,18 @@ export const PlayPage = ({
     };
 
     const diffRate =
-        data.difficulty === 'easy'
+        quizData &&
+        (data.difficulty === 'easy'
             ? 'Q'
             : data.difficulty === 'medium'
             ? 'QQ'
-            : 'QQQ';
-
+            : 'QQQ');
+    console.log(ansCategories);
     return (
         <div className={styles.playPage}>
-            <h2>{data.category}</h2>
+            <h2>{quizData && data.category}</h2>
             <div className={styles.info}>
-                <h5>Question {currentQuestion + 1}:</h5>
+                <h5>Question {currentQuestion + 1}</h5>
                 {userError && <ErrorMessage>{userError}</ErrorMessage>}
                 <div className={styles.score}>Score: {score}</div>
             </div>

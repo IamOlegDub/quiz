@@ -1,41 +1,24 @@
 @import '../../vars';
 .homePage {
-    padding: 50px 0px;
+    padding: 0px 0px;
+    .fixed {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        background-color: $main-color;
+        width: 100%;
+        padding: 30px 10px;
+    }
     h1 {
         color: $white;
         text-align: center;
     }
-    .luckButton {
-        position: relative;
-        margin-top: 20px;
-        color: $white;
-        padding: 15px 50px;
-        background: linear-gradient(
-            315deg,
-            #89ff00,
-            #ff0057,
-            #5d02ff,
-            #00bcd4,
-            #e64a19
-        );
-        animation: gradient 4s ease-in-out infinite;
-        background-size: 400% 400%;
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-    }
     ul {
-        margin: 0 auto;
-        margin-top: 50px;
+        margin: 100px auto;
+        margin-top: 200px;
         position: relative;
         width: 90%;
         display: grid;
@@ -51,9 +34,16 @@
 
 @media (max-width: 768px) {
     .homePage {
+        .fixed {
+            padding: 20px 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
         ul {
             width: 100%;
             grid-template-columns: auto;
+            margin-top: 160px;
         }
     }
 }
