@@ -20,7 +20,9 @@ export const Frame = ({
                 stylesQuitButton
             )}
         >
-            <p>{children}</p>
+            <div className={styles.text} type='text'>
+                {children}
+            </div>
         </div>
     );
 };

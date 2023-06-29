@@ -37,6 +37,9 @@
         margin-top: 30px;
         padding: 20px;
         line-height: 1.5;
+        p {
+            padding: 15px;
+        }
     }
     .options {
         margin-top: 50px;
@@ -57,7 +60,7 @@
             border: none;
             color: $white;
 
-            p {
+            div[type='text'] {
                 display: grid;
                 grid-template-columns: 16px 1fr;
                 width: 100%;
@@ -112,6 +115,71 @@
         .quitButton {
             &::before {
                 background: linear-gradient(315deg, #ff0057, #e64a19);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .playPage {
+        .info {
+            width: $question-width-m;
+        }
+        .options {
+            gap: $variants-gap-m;
+            .option {
+                width: $variant-width-m;
+                height: $variant-height-m;
+            }
+        }
+        .buttons {
+            width: $question-width-m;
+            .nextButton,
+            .quitButton {
+                width: calc(#{$variant-width-m}/ 2);
+                height: calc(#{$variant-height-m}/ 1.5);
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .playPage {
+        padding: 30px 80px;
+        .info {
+            width: $variant-width-s;
+        }
+        .options {
+            width: $variant-width-s;
+            gap: $variants-gap-s;
+            grid-template-columns: 1fr;
+            .option {
+                width: $variant-width-s;
+                height: $variant-height-s;
+            }
+        }
+        .buttons {
+            width: $variant-width-s;
+            justify-content: space-between;
+            padding: 6px;
+            .nextButton,
+            .quitButton {
+                width: 120px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .playPage {
+        padding: 30px 30px;
+        .buttons {
+            .nextButton,
+            .quitButton {
+                width: 100px;
+                font-size: 12px;
             }
         }
     }

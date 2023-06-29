@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './PlayPage.module.scss';
 import { Frame } from '../../components/Layout/Frame';
@@ -17,13 +17,11 @@ export const PlayPage = ({
     const [selected, setSelected] = useState();
     const [userError, setUserError] = useState(false);
 
-    const params = useParams();
     const navigate = useNavigate();
 
     const word = 'ABCD';
 
     const data = quizData.results && quizData.results[currentQuestion];
-    console.log(data);
 
     useEffect(() => {
         setOptions(

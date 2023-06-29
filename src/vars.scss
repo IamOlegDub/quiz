@@ -53,3 +53,15 @@ $pink-color: #e91e63;
 $purple-color: #5d02ff;
 $red-color: #ff0057;
 $orange-color: #ffc107;
+
+$variant-width-m: 250px;
+$variant-height-m: 50px;
+$variants-gap-m: 40px;
+$question-width-m: calc(#{$variant-width-m} * 2 + #{$variants-gap-m});
+$question-height-m: fit-content;
+
+$variant-width-s: 100%;
+$variant-height-s: 50px;
+$variants-gap-s: 20px;
+$question-width-s: calc(#{$variant-width-m} * 2 + #{$variants-gap-m});
+$question-height-s: fit-content;

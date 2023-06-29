@@ -37,7 +37,6 @@ function App() {
         const difficulty = diff === 'random' ? '' : `&difficulty=${diff}`;
         const selectedCategory =
             category === 'random' ? '' : `&category=${category.key}`;
-        console.log(category, 'and', diff);
         try {
             const response = await fetch(
                 `https://opentdb.com/api.php?amount=10${selectedCategory}&type=multiple${difficulty}`,
@@ -55,7 +54,6 @@ function App() {
 
             const result = await response.json();
 
-            console.log('result is: ', JSON.stringify(result, null, 4));
             if (result.results.length === 0) {
                 return navigate('/');
             }

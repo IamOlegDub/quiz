@@ -1,7 +1,7 @@
-import { useHref, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Frame } from '../../components/Layout/Frame';
 import styles from './FinishPage.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export const FinishPage = ({
     score,
@@ -11,7 +11,6 @@ export const FinishPage = ({
     setCorrect,
     infoData,
     loadData,
-    quizData,
 }) => {
     const navigate = useNavigate();
     useEffect(() => {
@@ -23,7 +22,7 @@ export const FinishPage = ({
         };
         console.log('dataSaved');
         localStorage.setItem('newData', JSON.stringify(newData));
-    }, []);
+    });
 
     const onBackHome = () => {
         setScore(0);
