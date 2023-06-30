@@ -126,12 +126,15 @@ export const FinishPage = ({
                 <h2>No plays - no results:-)</h2>
             )}
             <div className={styles.buttons}>
-                <FrameButton
-                    onAction={onClearData}
-                    name='Clear RESULTS'
-                    buttonColor='hot'
-                    position='center'
-                />
+                {totalGames && (
+                    <FrameButton
+                        onAction={onClearData}
+                        name='Clear RESULTS'
+                        buttonColor='hot'
+                        position='center'
+                    />
+                )}
+
                 <FrameButton
                     onAction={onBackHome}
                     name='Back Home'
