@@ -1,0 +1,64 @@
+@import '../../vars';
+button {
+    &:disabled {
+        .option {
+            color: $disables;
+        }
+    }
+}
+.option {
+    width: $variant-width;
+    height: $variant-height;
+    min-width: auto;
+    cursor: pointer;
+    border: none;
+    color: $white;
+
+    div[type='text'] {
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        width: 100%;
+        padding: 20px;
+    }
+
+    &.selected {
+        background: $light;
+        animation: gradient 3s ease infinite;
+        background-size: 400% 400%;
+        color: $white !important;
+
+        &::before {
+            background: $light;
+        }
+    }
+    &.wrong {
+        background: $hot;
+        color: $white !important;
+        &::before {
+            background: $hot;
+        }
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .option {
+        width: $variant-width-m;
+        height: $variant-height-m;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .option {
+        width: $variant-width-s;
+        height: $variant-height-s;
+    }
+}

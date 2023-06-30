@@ -5,6 +5,7 @@ $main-color: #131b36;
 $secondary-color: #f0ac71;
 
 $white: #ffffff;
+$disables: rgb(133, 133, 133);
 
 $tile-background: linear-gradient(
     45deg,
@@ -42,7 +43,7 @@ $question-height: fit-content;
     border: 10px solid;
     border-image-slice: 1;
     border-width: 5px;
-    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    border-image-source: $happy;
 }
 
 $raspberry-color: #ff0057;
@@ -53,6 +54,11 @@ $pink-color: #e91e63;
 $purple-color: #5d02ff;
 $red-color: #ff0057;
 $orange-color: #ffc107;
+
+$hot: linear-gradient(315deg, $raspberry-color, $dark-red-color);
+$light: linear-gradient(315deg, $green-color, $blue-color);
+$happy: linear-gradient(315deg, $purple-color, $pink-color);
+$sunny: linear-gradient(315deg, $red-color, $orange-color);
 
 $variant-width-m: 250px;
 $variant-height-m: 50px;

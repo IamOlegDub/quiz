@@ -1,10 +1,16 @@
+import cn from 'classnames';
 import styles from './RegularButton.module.scss';
 
-export const RegularButton = ({ onStartQuiz = '', buttonText }) => {
+export const RegularButton = ({
+    onFunc = '',
+    buttonText,
+    args = '',
+    outlined,
+}) => {
     return (
         <button
-            className={styles.luckButton}
-            onClick={() => onStartQuiz && onStartQuiz('random', 'random')}
+            className={cn(styles.luckButton, { [styles.outlined]: outlined })}
+            onClick={() => onFunc && onFunc(...args)}
         >
             {buttonText}
         </button>

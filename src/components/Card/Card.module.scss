@@ -33,21 +33,21 @@ button {
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: #fff;
+            background: $white;
             transform: skew(2deg, 2deg);
             z-index: -1;
         }
         &.glow:nth-child(n)::before {
-            background: linear-gradient(315deg, #e91e63, #5d02ff);
+            background: $happy;
         }
         &.glow:nth-child(3n)::before {
-            background: linear-gradient(315deg, #ff0000, #ffc107);
+            background: $sunny;
         }
         &.glow:nth-child(even)::before {
-            background: linear-gradient(315deg, #89ff00, #00bcd4);
+            background: $light;
         }
         &.glow:nth-child(4n)::before {
-            background: linear-gradient(315deg, #ff0057, #e64a19);
+            background: $hot;
         }
     }
     .content {
@@ -70,13 +70,13 @@ button {
             padding: 0;
             font-size: 24px;
             font-weight: 500;
-            color: #fff;
+            color: $white;
         }
         p {
             margin: 0 auto;
             padding: 0;
             font-size: 14px;
-            color: #fff;
+            color: $white;
             opacity: 0.5;
             width: 80%;
             text-transform: lowercase;
@@ -86,9 +86,9 @@ button {
             position: relative;
             padding: 10px 20px;
             text-decoration: none;
-            border: 1px solid #fff;
+            border: 1px solid $white;
             display: inline-block;
-            color: #fff;
+            color: $white;
             transition: 0.5s;
             transform: translateY(-40px);
             opacity: 0;
@@ -108,7 +108,7 @@ button {
             visibility: visible;
         }
         .content button:hover {
-            background: #fff;
+            background: $white;
             color: #000;
         }
     }
@@ -139,7 +139,7 @@ button {
             padding: 10px;
             button {
                 &:active {
-                    background: #fff;
+                    background: $white;
                     color: #000;
                 }
             }

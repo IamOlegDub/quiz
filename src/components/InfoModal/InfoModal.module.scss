@@ -31,7 +31,7 @@
         margin: auto;
         text-align: center;
         &:before {
-            background: linear-gradient(315deg, #89ff00, #00bcd4);
+            background: $light;
         }
     }
     p {

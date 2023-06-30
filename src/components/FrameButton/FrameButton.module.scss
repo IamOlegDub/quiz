@@ -1,0 +1,46 @@
+@import '../../vars';
+button {
+    color: $white;
+    border: none;
+}
+.frameButton {
+    width: calc(#{$variant-width}/ 2);
+    height: calc(#{$variant-height}/ 1.5);
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &.hot {
+        &::before {
+            background: $hot;
+        }
+    }
+    &.light {
+        &::before {
+            background: $light;
+        }
+    }
+    &.happy {
+        &::before {
+            background: $happy;
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .frameButton {
+        width: calc(#{$variant-width-m}/ 2);
+        height: calc(#{$variant-height-m}/ 1.5);
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .frameButton {
+        width: 120px;
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .frameButton {
+        width: 100px;
+        font-size: 12px;
+    }
+}

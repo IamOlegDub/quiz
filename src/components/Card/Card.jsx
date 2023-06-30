@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import styles from './Card.module.scss';
 import { difficulties } from '../../data';
+import styles from './Card.module.scss';
 
 export const Card = ({ category, onStartQuiz }) => {
     return (

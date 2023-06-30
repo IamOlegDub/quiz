@@ -1,11 +1,11 @@
-import './App.scss';
+import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Spinner } from './components/Spinner';
 import { HomePage } from './pages/Home/HomePage';
-import { Page404 } from './pages/Page404/Page404';
 import { PlayPage } from './pages/PlayPage/PlayPage';
 import { FinishPage } from './pages/FinishPage/FinishPage';
-import { useEffect, useState } from 'react';
-import { Spinner } from './components/Spinner';
+import { Page404 } from './pages/Page404/Page404';
+import './App.scss';
 
 function App() {
     const [quizData, setQuizData] = useState();
@@ -70,11 +70,6 @@ function App() {
         setTime(Date.now());
     };
 
-    // useEffect(() => {
-    //     localStorage.setItem('currentQuizData', JSON.stringify(quizData));
-    //     console.log('data saved');
-    // }, [quizData]);
-
     if (isLoading) return <Spinner />;
 
     return (
@@ -111,6 +106,7 @@ function App() {
                             setInfoData={setInfoData}
                             quizData={quizData}
                             loadData={loadData}
+                            setTime={setTime}
                         />
                     }
                 />

@@ -1,9 +1,0 @@
-@import '../../../vars';
-.bigFrame {
-    @include frame;
-    width: $question-width;
-    min-height: 150px;
-    padding: 50px;
-    line-height: 1.4;
-    // border-radius: 40px 0 40px 0;
-}

@@ -2,28 +2,49 @@
 .luckButton {
     position: relative;
     margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: $white;
     padding: 15px 50px;
+    border: solid 2px transparent;
+    min-width: 160px;
     background: linear-gradient(
         315deg,
-        #89ff00,
-        #ff0057,
-        #5d02ff,
-        #00bcd4,
-        #e64a19
+        $green-color,
+        $raspberry-color,
+        $purple-color,
+        $blue-color,
+        $dark-red-color,
+        $orange-color
     );
     animation: gradient 4s ease-in-out infinite;
     background-size: 400% 400%;
+    &.outlined {
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        box-shadow: 2px 1000px 4px 4px $main-color inset;
+        background-image: linear-gradient(
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0)
+            ),
+            -webkit-linear-gradient(315deg, $green-color, $raspberry-color, $purple-color, $blue-color, $dark-red-color, $orange-color);
+    }
 
     @keyframes gradient {
         0% {
-            background-position: 0% 50%;
+            background-position: 20% 50%;
         }
         50% {
-            background-position: 100% 50%;
+            background-position: 90% 50%;
         }
         100% {
-            background-position: 0% 50%;
+            background-position: 20% 50%;
         }
+    }
+}
+@media (max-width: 450px) {
+    .luckButton {
+        min-width: calc(300px / 2 - 20px);
+        padding: 10px 20px;
     }
 }

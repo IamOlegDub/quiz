@@ -1,7 +1,7 @@
-import cn from 'classnames';
-import { Frame } from '../Layout/Frame';
-import styles from './InfoModal.module.scss';
 import ReactDOM from 'react-dom';
+import cn from 'classnames';
+import { Frame } from '../Frame';
+import styles from './InfoModal.module.scss';
 
 const Overlay = ({ showModal, onClose }) => {
     return (

@@ -24,3 +24,22 @@ export const categories = [
     { title: 'Cartoon and Animations', key: 32 },
 ];
 export const difficulties = ['easy', 'medium', 'hard', 'random'];
+
+export const WORD = 'ABCD';
+
+export const chartOptions = {
+    title: 'Total answering rate',
+    pieHole: 0.4,
+    is3D: false,
+    colors: ['#00bcd4', '#ff0057'],
+};
+
+export const symConverter = (str) => {
+    str = str.replace(/&amp;/g, '&');
+    str = str.replace(/&gt;/g, '>');
+    str = str.replace(/&lt;/g, '<');
+    str = str.replace(/&quot;/g, '"');
+    str = str.replace(/&#039;/g, "'");
+    str = str.replace(/&micro;/g, 'µ');
+    return str;
+};

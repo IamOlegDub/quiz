@@ -1,6 +1,6 @@
-import { Link, useParams } from 'react-router-dom';
-import styles from './Page404.module.scss';
+import { Link } from 'react-router-dom';
 import { RegularButton } from '../../components/RegularButton';
+import styles from './Page404.module.scss';
 
 export const Page404 = () => {
     return (

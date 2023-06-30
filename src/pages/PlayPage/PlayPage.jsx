@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import cn from 'classnames';
-import styles from './PlayPage.module.scss';
-import { Frame } from '../../components/Layout/Frame';
 import { useEffect, useState } from 'react';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
+import { Info } from '../../components/Info/Info';
+import { Question } from '../../components/Question/Question';
+import { Option } from '../../components/Option/Option';
+import { FrameButton } from '../../components/FrameButton/FrameButton';
+import styles from './PlayPage.module.scss';
 
 export const PlayPage = ({
     quizData,
@@ -12,47 +13,15 @@ export const PlayPage = ({
     setCorrect,
     setTime,
 }) => {
-    // const [quizData, setQuizData] = useState();
     const [options, setOptions] = useState();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selected, setSelected] = useState();
     const [userError, setUserError] = useState(false);
-    const [ansCategories, setAnsCategories] = useState([]);
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const data = JSON.parse(localStorage.getItem('currentQuizData'));
-    //     console.log('data loaded');
-    //     console.log(data);
-    // }, []);
-
-    const word = 'ABCD';
-
     const data = quizData && quizData.results[currentQuestion];
 
-    const writeCategories = () => {
-        const newObj = {
-            category: data.category,
-            value: 1,
-        };
-        if (ansCategories.length > 0) {
-            console.log('обєкт існує уже');
-            ansCategories.forEach((ansCat) => {
-                if (ansCat.category === data.category) {
-                    ansCat.value = ansCat.value + 1;
-                    console.log('модифікація створилася');
-                    setAnsCategories((prev) => {
-                        return [...prev, ansCat];
-                    });
-                } else {
-                    setAnsCategories((prev) => [...prev, newObj]);
-                }
-            });
-        } else {
-            setAnsCategories([newObj]);
-        }
-    };
     useEffect(() => {
         setOptions(
             quizData &&
@@ -63,6 +32,7 @@ export const PlayPage = ({
     const onQuit = () => {
         setScore(0);
         setCorrect(0);
+        setTime('');
         navigate('/');
     };
 
@@ -71,7 +41,6 @@ export const PlayPage = ({
     };
 
     const onNextQuestion = () => {
-        // writeCategories();
         if (currentQuestion > 8) {
             navigate('/finish');
             setTime((prev) => Date.now() - prev);
@@ -79,14 +48,6 @@ export const PlayPage = ({
             setCurrentQuestion(currentQuestion + 1);
             setSelected();
         } else setUserError('Please select an option');
-    };
-
-    const onSelect = (option) => {
-        if (selected === option && selected === data.correct_answer)
-            return 'selected';
-        else if (selected === option && selected !== data.correct_answer)
-            return 'wrong';
-        else if (option === data.correct_answer) return 'selected';
     };
 
     const onCheck = (option) => {
@@ -102,60 +63,35 @@ export const PlayPage = ({
         setUserError(false);
     };
 
-    const diffRate =
-        quizData &&
-        (data.difficulty === 'easy'
-            ? 'Q'
-            : data.difficulty === 'medium'
-            ? 'QQ'
-            : 'QQQ');
-    console.log(ansCategories);
     return (
         <div className={styles.playPage}>
-            <h2>{quizData && data.category}</h2>
-            <div className={styles.info}>
-                <h5>Question {currentQuestion + 1}</h5>
-                {userError && <ErrorMessage>{userError}</ErrorMessage>}
-                <div className={styles.score}>Score: {score}</div>
-            </div>
-            <Frame stylesQuestion={styles.question}>
-                <div className={styles.diffRate}>{diffRate}</div>
-                {data.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}
-            </Frame>
+            <h2>{data.category}</h2>
+            <Info
+                score={score}
+                userError={userError}
+                currentQuestion={currentQuestion}
+            />
+            <Question data={data} />
             <div className={styles.options}>
                 {options &&
                     options.map((option, i) => (
-                        <button
+                        <Option
                             key={option}
-                            onClick={() => onCheck(option)}
-                            disabled={selected}
-                        >
-                            <Frame
-                                key={option}
-                                stylesOption={cn(
-                                    styles.option,
-                                    styles[`${selected && onSelect(option)}`]
-                                )}
-                            >
-                                <div>{word[i]}:</div>
-                                <div>
-                                    {option
-                                        .replace(/&quot;/g, '"')
-                                        .replace(/&#039;/g, "'")}
-                                </div>
-                            </Frame>
-                        </button>
+                            option={option}
+                            i={i}
+                            data={data}
+                            onCheck={onCheck}
+                            selected={selected}
+                        />
                     ))}
             </div>
             <div className={styles.buttons}>
-                <div onClick={onQuit}>
-                    <Frame stylesQuitButton={styles.quitButton}>Quit</Frame>
-                </div>
-                <div onClick={onNextQuestion}>
-                    <Frame stylesNextButton={styles.nextButton}>
-                        {currentQuestion > 8 ? 'Finish' : 'Next question'}
-                    </Frame>
-                </div>
+                <FrameButton onAction={onQuit} name='Quit' buttonColor='hot' />
+                <FrameButton
+                    onAction={onNextQuestion}
+                    name={currentQuestion > 8 ? 'Finish' : 'Next question'}
+                    buttonColor='light'
+                />
             </div>
         </div>
     );

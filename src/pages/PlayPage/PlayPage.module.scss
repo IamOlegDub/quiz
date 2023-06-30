@@ -10,94 +10,13 @@
         text-transform: uppercase;
         margin-bottom: 10px;
     }
-    .diffRate {
-        position: absolute;
-        bottom: 5px;
-        right: 20px;
-        margin: 0;
-        padding: 0;
-        font-size: 2em;
-        color: rgba(255, 255, 255, 0.05);
-        transition: 0.5s;
-    }
-    .info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: $question-width;
-        height: 30px;
-        margin-top: 10px;
-        h5,
-        .score {
-            opacity: 0.5;
-            padding: 0 10px;
-        }
-    }
-    .question {
-        margin-top: 30px;
-        padding: 20px;
-        line-height: 1.5;
-        p {
-            padding: 15px;
-        }
-    }
+
     .options {
         margin-top: 50px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: $variants-gap;
         margin-bottom: 20px;
-        button {
-            &:disabled {
-                .option {
-                    color: rgb(133, 133, 133);
-                }
-            }
-        }
-        .option {
-            width: $variant-width;
-            height: $variant-height;
-            min-width: auto;
-            cursor: pointer;
-            border: none;
-            color: $white;
-
-            div[type='text'] {
-                display: grid;
-                grid-template-columns: 16px 1fr;
-                width: 100%;
-                padding: 20px;
-            }
-
-            &.selected {
-                background: linear-gradient(315deg, #00bcd4, #89ff00);
-                animation: gradient 3s ease infinite;
-                background-size: 400% 400%;
-                color: $white !important;
-
-                &::before {
-                    background: linear-gradient(315deg, #89ff00, #00bcd4);
-                }
-            }
-            &.wrong {
-                background: linear-gradient(315deg, #e64a19, #ff0057);
-                color: $white !important;
-                &::before {
-                    background: linear-gradient(315deg, #ff0057, #e64a19);
-                }
-            }
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%;
-                }
-                50% {
-                    background-position: 100% 50%;
-                }
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-        }
     }
 
     .buttons {
@@ -105,29 +24,11 @@
         display: flex;
         justify-content: space-evenly;
         width: $question-width;
-        .nextButton,
-        .quitButton {
-            width: calc(#{$variant-width}/ 2);
-            height: calc(#{$variant-height}/ 1.5);
-            cursor: pointer;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            &::before {
-                background: linear-gradient(315deg, #89ff00, #00bcd4);
-            }
-        }
-        .quitButton {
-            &::before {
-                background: linear-gradient(315deg, #ff0057, #e64a19);
-            }
-        }
     }
 }
 
 @media only screen and (max-width: 992px) {
     .playPage {
-        .info {
-            width: $question-width-m;
-        }
         .options {
             gap: $variants-gap-m;
             .option {
@@ -137,12 +38,6 @@
         }
         .buttons {
             width: $question-width-m;
-            .nextButton,
-            .quitButton {
-                width: calc(#{$variant-width-m}/ 2);
-                height: calc(#{$variant-height-m}/ 1.5);
-                font-size: 14px;
-            }
         }
     }
 }
@@ -150,9 +45,6 @@
 @media only screen and (max-width: 768px) {
     .playPage {
         padding: 30px 80px;
-        .info {
-            width: $variant-width-s;
-        }
         .options {
             width: $variant-width-s;
             gap: $variants-gap-s;
@@ -166,11 +58,6 @@
             width: $variant-width-s;
             justify-content: space-between;
             padding: 6px;
-            .nextButton,
-            .quitButton {
-                width: 120px;
-                font-size: 14px;
-            }
         }
     }
 }
@@ -178,12 +65,5 @@
 @media only screen and (max-width: 450px) {
     .playPage {
         padding: 30px 30px;
-        .buttons {
-            .nextButton,
-            .quitButton {
-                width: 100px;
-                font-size: 12px;
-            }
-        }
     }
 }

@@ -1,0 +1,24 @@
+@import '../../vars';
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $question-width;
+    height: 30px;
+    margin-top: 10px;
+    h5,
+    .score {
+        opacity: 0.5;
+        padding: 0 10px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .info {
+        width: $question-width-m;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .info {
+        width: $variant-width-s;
+    }
+}

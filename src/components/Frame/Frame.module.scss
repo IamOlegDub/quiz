@@ -1,4 +1,4 @@
-@import '../../../vars';
+@import '../../vars';
 .frame {
     position: relative;
     height: 200px;
@@ -16,7 +16,7 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(315deg, #e91e63, #5d02ff);
+    background: $happy;
     transform: skew(2deg, 2deg);
     z-index: -1;
 }

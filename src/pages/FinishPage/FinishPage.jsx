@@ -1,8 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { Frame } from '../../components/Layout/Frame';
-import styles from './FinishPage.module.scss';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+import { Chart } from 'react-google-charts';
 import { InfoModal } from '../../components/InfoModal';
+import { GameResult } from '../../components/GameResult/GameResult';
+import { TotalResults } from '../../components/TotalResults/TotalResults';
+import { FrameButton } from '../../components/FrameButton/FrameButton';
+import { chartOptions } from '../../data';
+import styles from './FinishPage.module.scss';
 
 export const FinishPage = ({
     score,
@@ -12,17 +17,23 @@ export const FinishPage = ({
     setCorrect,
     infoData,
     loadData,
+    setTime,
 }) => {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
-        const newData = {
-            score: infoData.score ? score + infoData.score : score,
-            correct: infoData.correct ? correct + infoData.correct : correct,
-            time: infoData.time ? time + infoData.time : time,
-            games: infoData.games ? 1 + infoData.games : 1,
-        };
-        localStorage.setItem('newData', JSON.stringify(newData));
+        if (time) {
+            const newData = {
+                score: infoData.score ? score + infoData.score : score,
+                correct: infoData.correct
+                    ? correct + infoData.correct
+                    : correct,
+                time: infoData.time ? time + infoData.time : time,
+                games: infoData.games ? 1 + infoData.games : 1,
+            };
+            localStorage.setItem('newData', JSON.stringify(newData));
+        }
     }, []);
 
     const onBackHome = () => {
@@ -30,6 +41,11 @@ export const FinishPage = ({
         setCorrect(0);
         navigate('/');
         loadData();
+        setTime('');
+    };
+
+    const onShowModal = () => {
+        setShowModal(!showModal);
     };
 
     const timeConverter = (ms) => {
@@ -39,53 +55,90 @@ export const FinishPage = ({
         return `${hours}h ${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
     };
 
+    const onClearData = () => {
+        console.log('works');
+        setScore(0);
+        setCorrect(0);
+        setTime('');
+        localStorage.removeItem('newData');
+    };
+
     const totalScore = infoData.score + score || score;
     const totalCorrect = infoData.correct + correct || correct;
     const diffScore = (score / correct || 1).toFixed(2);
     const totalDiffScore = (totalScore / totalCorrect || 1).toFixed(2);
-    const totalGames = infoData.games + 1 || 1;
+    const totalGames = !time ? infoData.games : infoData.games + 1 || 1;
     const answeringTime = timeConverter(time);
-    const totalAnsweringTime = timeConverter(infoData.time + time || time);
+
+    const totalTime = !time ? infoData.time : infoData.time + time || time;
+    const totalAnsweringTime = timeConverter(totalTime);
+    const timePerGame = timeConverter(totalTime / totalGames);
+    const scorePerGame = (totalScore / totalGames).toFixed(2);
+
+    const chartData = [
+        ['Answers', '% of all answers'],
+        ['Correct answers', totalCorrect],
+        ['Wrong answers', totalGames * 10 - totalCorrect],
+    ];
 
     return (
-        <div className={styles.finishPage}>
+        <div
+            className={cn(styles.finishPage, {
+                [styles.totalOnly]: !time,
+            })}
+        >
             <InfoModal
                 onClose={() => setShowModal(false)}
                 showModal={showModal}
             />
-            <div className={styles.total}>Result:</div>
-
-            <div className={styles.result}>Score: {score}</div>
-            <div className={styles.result}>Time: {answeringTime}</div>
-            <div className={styles.result}>Correct answers: {correct}</div>
-            <div className={styles.result}>
-                <div className={styles.diffScore}>
-                    Difficulty score: {diffScore}
-                    <span
-                        onClick={() => setShowModal(!showModal)}
-                        className={styles.i}
-                    >
-                        i
-                    </span>
-                </div>
+            {time && (
+                <GameResult
+                    time={time}
+                    score={score}
+                    answeringTime={answeringTime}
+                    correct={correct}
+                    diffScore={diffScore}
+                    onShowModal={onShowModal}
+                />
+            )}
+            {totalGames ? (
+                <>
+                    <TotalResults
+                        totalScore={totalScore}
+                        totalAnsweringTime={totalAnsweringTime}
+                        totalCorrect={totalCorrect}
+                        totalDiffScore={totalDiffScore}
+                        totalGames={totalGames}
+                        timePerGame={timePerGame}
+                        scorePerGame={scorePerGame}
+                    />
+                    <div className={cn(styles.result, styles.chartWrapper)}>
+                        <Chart
+                            chartType='PieChart'
+                            width='100%'
+                            height='300px'
+                            data={chartData}
+                            options={chartOptions}
+                        />
+                    </div>
+                </>
+            ) : (
+                <h2>No plays - no results:-)</h2>
+            )}
+            <div className={styles.buttons}>
+                <FrameButton
+                    onAction={onClearData}
+                    name='Clear RESULTS'
+                    buttonColor='hot'
+                    position='center'
+                />
+                <FrameButton
+                    onAction={onBackHome}
+                    name='Back Home'
+                    buttonColor='happy'
+                    position='center'
+                />
             </div>
-
-            <div className={styles.total}>Total results:</div>
-
-            <div className={styles.result}>Total score: {totalScore}</div>
-            <div className={styles.result}>
-                Total time: {totalAnsweringTime}
-            </div>
-            <div className={styles.result}>
-                Total amount of correct answers: {totalCorrect}
-            </div>
-            <div className={styles.result}>
-                Total difficulty score: {totalDiffScore}
-            </div>
-            <div className={styles.result}>Total games: {totalGames}</div>
-            <button className={styles.home} onClick={onBackHome}>
-                <Frame>Back to Home</Frame>
-            </button>
         </div>
     );
 };

@@ -13,7 +13,7 @@
         left: -2px;
         right: -2px;
         bottom: -2px;
-        background: linear-gradient(315deg, #ff0000, #ffc107);
+        background: $sunny;
         animation: gradient 1s ease infinite;
         background-size: 400% 400%;
         transform: skew(2deg, 2deg);

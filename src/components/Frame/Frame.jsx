@@ -5,8 +5,7 @@ export const Frame = ({
     children,
     stylesQuestion,
     stylesOption,
-    stylesNextButton,
-    stylesQuitButton,
+    stylesFrameButton,
     stylesModal,
 }) => {
     return (
@@ -17,8 +16,7 @@ export const Frame = ({
                 styles.glow,
                 stylesQuestion,
                 stylesOption,
-                stylesNextButton,
-                stylesQuitButton,
+                stylesFrameButton,
                 stylesModal
             )}
         >
