@@ -6,18 +6,25 @@ import { InfoModal } from '../../components/InfoModal';
 import { GameResult } from '../../components/GameResult/GameResult';
 import { TotalResults } from '../../components/TotalResults/TotalResults';
 import { FrameButton } from '../../components/FrameButton/FrameButton';
-import { chartOptions } from '../../data';
+import { catCharOptions, chartOptions } from '../../data';
+import { merge } from '../../assets/merge';
+import { timeConverter } from '../../assets/timeConverter';
 import styles from './FinishPage.module.scss';
 
 export const FinishPage = ({
     score,
-    correct,
-    time,
     setScore,
+    correct,
     setCorrect,
+    time,
     infoData,
+    setInfoData,
     loadData,
     setTime,
+    bestCategories,
+    correctCategories,
+    setLoadedBestCategories,
+    setLoadedCorrectCategories,
 }) => {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
@@ -33,8 +40,33 @@ export const FinishPage = ({
                 games: infoData.games ? 1 + infoData.games : 1,
             };
             localStorage.setItem('newData', JSON.stringify(newData));
+            localStorage.setItem(
+                'bestAndCorrectCategories',
+                JSON.stringify({
+                    bestCategories: bestCategories,
+                    correctCategories: correctCategories,
+                })
+            );
         }
     }, []);
+
+    const correctCategoriesChartOptions = merge(
+        Object.entries(bestCategories),
+        correctCategories
+    );
+
+    const dataOld = [
+        ['Category', 'Played times'],
+        ...Object.entries(bestCategories),
+    ];
+    const dataNew = [
+        ['Category', 'Correct answers'],
+        ...correctCategoriesChartOptions,
+    ];
+    const categoryChartData = {
+        old: dataOld,
+        new: dataNew,
+    };
 
     const onBackHome = () => {
         setScore(0);
@@ -48,19 +80,15 @@ export const FinishPage = ({
         setShowModal(!showModal);
     };
 
-    const timeConverter = (ms) => {
-        const minutes = Math.floor(ms / 60000);
-        const seconds = ((ms % 60000) / 1000).toFixed(0);
-        const hours = ((minutes % 60) / 60).toFixed(0);
-        return `${hours}h ${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
-    };
-
     const onClearData = () => {
-        console.log('works');
         setScore(0);
         setCorrect(0);
         setTime('');
         localStorage.removeItem('newData');
+        localStorage.removeItem('bestAndCorrectCategories');
+        setInfoData('');
+        setLoadedBestCategories({});
+        setLoadedCorrectCategories({});
     };
 
     const totalScore = infoData.score + score || score;
@@ -112,6 +140,23 @@ export const FinishPage = ({
                         timePerGame={timePerGame}
                         scorePerGame={scorePerGame}
                     />
+                    <div className={cn(styles.result, styles.catChart)}>
+                        <Chart
+                            chartType='ColumnChart'
+                            width='100%'
+                            height='500px'
+                            diffdata={categoryChartData}
+                            options={catCharOptions}
+                        />
+                        <div className={styles.chartLabel}>
+                            <div className={styles.correctLabel}>
+                                Correct answers
+                            </div>
+                            <div className={styles.totalLabel}>
+                                Played times
+                            </div>
+                        </div>
+                    </div>
                     <div className={cn(styles.result, styles.chartWrapper)}>
                         <Chart
                             chartType='PieChart'

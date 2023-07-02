@@ -5,6 +5,8 @@ import { Question } from '../../components/Question/Question';
 import { Option } from '../../components/Option/Option';
 import { FrameButton } from '../../components/FrameButton/FrameButton';
 import styles from './PlayPage.module.scss';
+import { onShuffle } from '../../assets/onShuffle';
+import { getCategories } from '../../assets/getCategories';
 
 export const PlayPage = ({
     quizData,
@@ -12,11 +14,16 @@ export const PlayPage = ({
     setScore,
     setCorrect,
     setTime,
+    setBestCategories,
+    loadedBestCategories,
+    setCorrectCategories,
+    loadedCorrectCategories,
 }) => {
     const [options, setOptions] = useState();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selected, setSelected] = useState();
     const [userError, setUserError] = useState(false);
+    const [correctData, setCorrectData] = useState([]);
 
     const navigate = useNavigate();
 
@@ -34,16 +41,19 @@ export const PlayPage = ({
         setCorrect(0);
         setTime('');
         navigate('/');
-    };
-
-    const onShuffle = (options) => {
-        return options.sort(() => Math.random() - 0.5);
+        setBestCategories({});
     };
 
     const onNextQuestion = () => {
         if (currentQuestion > 8) {
-            navigate('/finish');
             setTime((prev) => Date.now() - prev);
+            setCorrectCategories(
+                getCategories(correctData, loadedCorrectCategories)
+            );
+            setBestCategories(
+                getCategories(quizData.results, loadedBestCategories)
+            );
+            navigate('/finish');
         } else if (selected) {
             setCurrentQuestion(currentQuestion + 1);
             setSelected();
@@ -59,6 +69,7 @@ export const PlayPage = ({
                 if (data.difficulty === 'hard') return score + 3;
             });
             setCorrect((prev) => prev + 1);
+            setCorrectData((prev) => [...prev, data]);
         }
         setUserError(false);
     };

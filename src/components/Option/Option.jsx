@@ -1,7 +1,8 @@
 import cn from 'classnames';
 import { Frame } from '../Frame';
-import { WORD, symConverter } from '../../data';
+import { WORD } from '../../data';
 import styles from './Option.module.scss';
+import { symConverter } from '../../assets/symConverter';
 
 export const Option = ({ option, selected, data, i, onCheck }) => {
     const onSelect = (option) => {

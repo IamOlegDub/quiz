@@ -34,12 +34,15 @@ export const chartOptions = {
     colors: ['#00bcd4', '#ff0057'],
 };
 
-export const symConverter = (str) => {
-    str = str.replace(/&amp;/g, '&');
-    str = str.replace(/&gt;/g, '>');
-    str = str.replace(/&lt;/g, '<');
-    str = str.replace(/&quot;/g, '"');
-    str = str.replace(/&#039;/g, "'");
-    str = str.replace(/&micro;/g, 'µ');
-    return str;
+export const catCharOptions = {
+    title: 'Categories of played and correct answers',
+    legend: 'none',
+    pieSliceText: 'label',
+    slices: {
+        4: { offset: 0.2 },
+        12: { offset: 0.3 },
+        14: { offset: 0.4 },
+        15: { offset: 0.5 },
+    },
+    colors: ['#00bcd4'],
 };

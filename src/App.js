@@ -14,18 +14,32 @@ function App() {
     const [correct, setCorrect] = useState(0);
     const [time, setTime] = useState();
     const [infoData, setInfoData] = useState({});
+    const [loadedBestCategories, setLoadedBestCategories] = useState({});
+    const [loadedCorrectCategories, setLoadedCorrectCategories] = useState({});
+    const [bestCategories, setBestCategories] = useState({});
+    const [correctCategories, setCorrectCategories] = useState({});
+
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
     const loadData = () => {
         const loadedData = JSON.parse(localStorage.getItem('newData'));
+        const loadedCategories = JSON.parse(
+            localStorage.getItem('bestAndCorrectCategories')
+        );
+
         if (loadedData) {
             setInfoData(loadedData);
+        }
+        if (loadedCategories) {
+            setLoadedBestCategories(loadedCategories.bestCategories);
+            setLoadedCorrectCategories(loadedCategories.correctCategories);
         }
     };
 
     useEffect(() => {
+        console.log('useeffect');
         loadData();
     }, []);
 
@@ -69,7 +83,7 @@ function App() {
         }
         setTime(Date.now());
     };
-
+    console.log('app');
     if (isLoading) return <Spinner />;
 
     return (
@@ -86,10 +100,12 @@ function App() {
                             quizData={quizData}
                             score={score}
                             setScore={setScore}
-                            correct={correct}
                             setCorrect={setCorrect}
                             setTime={setTime}
-                            time={time}
+                            setBestCategories={setBestCategories}
+                            loadedBestCategories={loadedBestCategories}
+                            setCorrectCategories={setCorrectCategories}
+                            loadedCorrectCategories={loadedCorrectCategories}
                         />
                     }
                 />
@@ -104,9 +120,22 @@ function App() {
                             time={time}
                             infoData={infoData}
                             setInfoData={setInfoData}
-                            quizData={quizData}
                             loadData={loadData}
                             setTime={setTime}
+                            bestCategories={
+                                Object.keys(bestCategories).length > 0
+                                    ? bestCategories
+                                    : loadedBestCategories
+                            }
+                            correctCategories={
+                                Object.keys(correctCategories).length > 0
+                                    ? correctCategories
+                                    : loadedCorrectCategories
+                            }
+                            setLoadedBestCategories={setLoadedBestCategories}
+                            setLoadedCorrectCategories={
+                                setLoadedCorrectCategories
+                            }
                         />
                     }
                 />

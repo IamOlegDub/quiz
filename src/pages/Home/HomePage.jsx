@@ -6,6 +6,7 @@ import styles from './HomePage.module.scss';
 
 export const HomePage = ({ onStartQuiz }) => {
     const navigate = useNavigate();
+
     return (
         <div className={styles.homePage}>
             <div className={styles.fixed}>

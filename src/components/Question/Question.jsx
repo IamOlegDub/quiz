@@ -1,5 +1,5 @@
+import { symConverter } from '../../assets/symConverter';
 import { Frame } from '../Frame';
-import { symConverter } from '../../data';
 import styles from './Question.module.scss';
 
 export const Question = ({ data }) => {
