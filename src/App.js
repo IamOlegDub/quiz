@@ -39,7 +39,6 @@ function App() {
     };
 
     useEffect(() => {
-        console.log('useeffect');
         loadData();
     }, []);
 
