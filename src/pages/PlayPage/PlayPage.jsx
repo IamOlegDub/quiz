@@ -4,9 +4,9 @@ import { Info } from '../../components/Info/Info';
 import { Question } from '../../components/Question/Question';
 import { Option } from '../../components/Option/Option';
 import { FrameButton } from '../../components/FrameButton/FrameButton';
-import styles from './PlayPage.module.scss';
 import { onShuffle } from '../../assets/onShuffle';
 import { getCategories } from '../../assets/getCategories';
+import styles from './PlayPage.module.scss';
 
 export const PlayPage = ({
     quizData,
